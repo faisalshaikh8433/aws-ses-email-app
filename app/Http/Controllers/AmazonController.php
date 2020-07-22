@@ -15,6 +15,7 @@ class AmazonController extends Controller
     {
         $request->validate([
             'to_email_address' => 'required|email',
+            'subject' => 'required',
             'message' => 'required',
         ]);
 
@@ -35,7 +36,7 @@ class AmazonController extends Controller
             $sentEmail->message = $request->message;   
             $sentEmail->aws_message_id = $message_id;   
             $sentEmail->save();    
-            return redirect('/')->with('success','Email Sent');
+            return redirect('/sent_emails')->with('success','Email Sent');
         }
         
 
